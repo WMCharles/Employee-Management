@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     // Handle add employee form submission
     $("#addEmployeeForm").submit(function (event) {
         event.preventDefault();
@@ -24,19 +24,26 @@ $(document).ready(function () {
 
     // Handle edit employee button click
     $(".editEmployeeButton").click(function () {
-        var id = $(this).data("id");
+        var employeeId = $(this).data("id");
         $.ajax({
             url: "get_employee.php",
-            method: "POST",
-            data: {
-                id: id
-            },
+            method: "GET",
+            data: { id: employeeId },
+            dataType: "json",
+            contentType: "application/json",
             success: function (data) {
-                var employee = JSON.parse(data);
-                $("#editId").val(employee.id);
+
+                var employee = data[0];
+
+                // Populate edit modal form fields
+                $("#editEmployeeId").val(employee.id);
                 $("#editName").val(employee.name);
                 $("#editEmail").val(employee.email);
                 $("#editDepartment").val(employee.department_id);
+                console.log(employee);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
             }
         });
     });
@@ -44,10 +51,11 @@ $(document).ready(function () {
     // Handle edit employee form submission
     $("#editEmployeeForm").submit(function (event) {
         event.preventDefault();
-        var id = $("#editId").val();
+        var id = $("#editEmployeeId").val();
         var name = $("#editName").val();
         var email = $("#editEmail").val();
         var department = $("#editDepartment").val();
+        console.log(id)
         $.ajax({
             url: "edit_employee.php",
             method: "POST",
@@ -58,10 +66,8 @@ $(document).ready(function () {
                 department: department
             },
             success: function (data) {
-                // Reload table
-                $("#employeeTable tbody").html(data);
-                // Hide modal
-                $("#editEmployeeModal").modal("hide");
+                console.log(data);
+                location.reload();
             }
         });
     });
