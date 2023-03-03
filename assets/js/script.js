@@ -1,10 +1,12 @@
 $(document).ready(function () {
+    
     // Handle add employee form submission
     $("#addEmployeeForm").submit(function (event) {
         event.preventDefault();
-        var name = $("#addName").val();
-        var email = $("#addEmail").val();
-        var department = $("#addDepartment").val();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var department = $("#department").val();
+        console.log(name, email, department);
         $.ajax({
             url: "add_employee.php",
             method: "POST",
@@ -13,17 +15,13 @@ $(document).ready(function () {
                 email: email,
                 department: department
             },
+            dataType: "json",
             success: function (data) {
-                // Reload table
-                $("#employeeTable tbody").html(data);
-                // Hide modal
-                $("#addEmployeeModal").modal("hide");
-                // Clear form
-                $("#addEmployeeForm")[0].reset();
+                location.reload();
             }
         });
     });
-    
+
     // Handle edit employee button click
     $(".editEmployeeButton").click(function () {
         var id = $(this).data("id");
@@ -79,10 +77,13 @@ $(document).ready(function () {
                     id: id
                 },
                 success: function (data) {
-                    // Reload table
-                    $("#employeeTable tbody").html(data);
+                    location.reload();
                 }
             });
         }
     });
+
 });
+
+
+
