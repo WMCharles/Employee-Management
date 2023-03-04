@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 
     <!-- js -->
     <script defer src="https://code.jquery.com/jquery-3.6.3.js"></script>
@@ -143,7 +144,7 @@
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="content mt-4">
         <h1 class="text-center mb-4">Employee Management</h1>
         <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addEmployeeModal">Add Employee</button>
         <div class="table-responsive">
