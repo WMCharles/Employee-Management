@@ -39,43 +39,12 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="enter employee email e.g name@domain.com" required>
                         </div>
-                        <div class="form-group">
-                            <label for="department">Department</label>
-                            <select class="form-control" id="department" name="department" required>
-                                <option value="">Select Department</option>
-                                <?php
-                                // Connect to database
-                                $mysqli = new mysqli("localhost", "root", "", "bee_farm");
-
-                                // Check connection
-                                if ($mysqli->connect_errno) {
-                                    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-                                    exit();
-                                }
-
-                                // Query to retrieve departments
-                                $departmentsQuery = "SELECT * FROM departments";
-
-                                // Execute query
-                                $departmentsResult = $mysqli->query($departmentsQuery);
-
-                                // Loop through departments and create options
-                                if ($departmentsResult->num_rows > 0) {
-                                    while ($department = $departmentsResult->fetch_assoc()) {
-                                        echo "<option value=\"" . $department["id"] . "\">" . $department["name"] . "</option>";
-                                    }
-                                }
-
-                                // Close database connection
-                                $mysqli->close();
-                                ?>
-                            </select>
-                        </div>
+                        <?php include 'form.php'; ?>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="addEmployeeForm" class="btn btn-primary">Add Employee</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" form="addEmployeeForm" class="btn btn-success">Add Employee</button>
                 </div>
             </div>
         </div>
@@ -86,7 +55,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editEmployeeModalLabel">Edit Employee</h5>
+                    <h5 class="modal-title" id="editEmployeeModalLabel">Update Employee Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -137,8 +106,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" form="editEmployeeForm" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" form="editEmployeeForm" class="btn btn-success">Save Changes</button>
                 </div>
             </div>
         </div>
