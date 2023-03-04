@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    $('#employeeTable').DataTable();
     // Handle add employee form submission
     $("#addEmployeeForm").submit(function (event) {
         event.preventDefault();
